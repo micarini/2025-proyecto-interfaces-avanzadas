@@ -1,32 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <title>Star Wars Explorer</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>F1 Explorer</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <header>
-    <h1>Star Wars Explorer</h1>
+  <header>
+    <h1>F1 Explorer</h1>
     <nav>
-      <button id="btn-characters">Personajes</button>
-      <button id="btn-planets">Planetas</button>
-      <button id="btn-starships">Naves</button>
+      <button id="btn-drivers">Pilotos</button>
+      <button id="btn-races">Carreras</button>
+      <button id="btn-teams">Equipos</button>
     </nav>
   </header>
+  <main id="content"></main>
 
-  <main>
-    <!-- estado pendiente -->
-    <div id="loader" class="hidden">Cargando...</div>
 
-    <!-- estado de error -->
-    <div id="error" class="hidden"></div>
+  <h1>Pilotos de Fórmula 1</h1>
+  <div id="driver-container"></div>
 
-    <!-- contenedor de cards -->
-    <section id="cards-container" class="grid"></section>
-  </main>
 
-  <script src="assets/js/script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
