@@ -33,28 +33,30 @@ function fetchAndRender() {
   errorMsg.classList.add("hidden");
 
   fetch(`${API_BASE}/${currentCategory}/?page=${currentPage}`)
-    .then(response => {
+    .then((response) => {
       if (!response.ok) throw new Error("Fallo al conectar con la API");
       return response.json();
     })
-    .then(data => {
+    .then((data) => {
       loader.classList.add("hidden");
       renderCards(data.results, currentCategory);
       if (data.next === null) hasMore = false;
       currentPage++;
     })
-    .catch(error => {
+    .catch((error) => {
+      console.error("Fetch error:", error);
       loader.classList.add("hidden");
       errorMsg.textContent = "Error cargando datos. Intenta nuevamente.";
       errorMsg.classList.remove("hidden");
     })
+
     .finally(() => {
       isLoading = false;
     });
 }
 
 function renderCards(items, category) {
-  items.forEach(item => {
+  items.forEach((item) => {
     const card = document.createElement("div");
     card.classList.add("card");
 
@@ -70,7 +72,9 @@ function renderCards(items, category) {
     card.innerHTML = `
       <img src="${imageURL}" alt="${title}" onerror="this.src='assets/images/error.jpg'">
       <h3>${title}</h3>
-      <button onclick="location.href='detail.html?url=${encodeURIComponent(item.url)}'">Ver más</button>
+      <button onclick="location.href='detail.html?url=${encodeURIComponent(
+        item.url
+      )}'">Ver más</button>
     `;
 
     container.appendChild(card);
