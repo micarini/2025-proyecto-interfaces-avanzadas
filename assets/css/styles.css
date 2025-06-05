@@ -90,3 +90,49 @@ h1 {
   object-fit: cover;
   border-radius: 8px;
 }
+.race-card img {
+  object-fit: cover;
+  height: 150px;
+}
+
+#race-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+#trackmap {
+  position: relative;
+  width: 800px;
+  height: 480px;
+  background-image: url('/assets/images/Canada_Circuit.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin: auto;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Estilo para los autos */
+.car {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  border: 2px solid white;
+}
+
+.VER { background-color: royalblue; }
+.LEC { background-color: crimson; }
+.TSU { background-color: cornflowerblue; }
+
+.car {
+  transition: top 1s linear, left 1s linear;
+}
