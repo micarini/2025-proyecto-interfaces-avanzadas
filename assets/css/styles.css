@@ -1,9 +1,12 @@
-/*RESET*/
+/* RESET */
 * {
   text-decoration: none;
   color: inherit;
   font-family: inherit;
   list-style-type: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 img {
@@ -11,18 +14,70 @@ img {
   height: auto;
 }
 
+/* FUENTES */
+@font-face {
+  font-family: 'Formula1';
+  src: url('../fonts/F1-Font-Family/Formula1-Black.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Formula1';
+  src: url('../fonts/F1-Font-Family/Formula1-Bold-4.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Formula1';
+  src: url('../fonts/F1-Font-Family/Formula1-Bold_web.ttf') format('truetype');
+  font-weight: bolder;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Formula1';
+  src: url('../fonts/F1-Font-Family/Formula1-Regular-1.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Formula1';
+  src: url('../fonts/F1-Font-Family/Formula1-Italic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Formula1';
+  src: url('../fonts/F1-Font-Family/Formula1-Wide.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --f1-red: #e10600;
+  --f1-black: #15151e;
+  --f1-gray: #d9d9d9;
+  --f1-white: #ffffff;
+}
+
 body {
-  font-family: "Poppins", sans-serif;
-  background-color: #ffffff;
-  color: #232323;
+  font-family: 'Formula1', sans-serif;
+  background-color: var(--f1-black);
+  color: var(--f1-white);
   line-height: 1.6;
-  height: 100vh;
   width: 100%;
+  padding: 20px;
 }
 
 header {
   padding: 1rem;
   text-align: center;
+  background-color: var(--f1-red);
+  color: white;
 }
 
 nav {
@@ -31,75 +86,80 @@ nav {
 
 button {
   margin: 0.5rem;
-  padding: 0.5rem 1rem;
-  background-color: #238636;
+  padding: 0.5rem 1.2rem;
+  background-color: var(--f1-red);
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 0;
   cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-family: 'Formula1', sans-serif;
 }
 
 button:hover {
-  background-color: #2ea043;
+  background-color: #ff1f0f;
 }
 
-body {
-  font-family: sans-serif;
-  margin: 0;
-  padding: 20px;
-  background-color: #f0f2f5;
-}
-
-h1 {
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Formula1', sans-serif;
+  font-weight: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--f1-white);
   text-align: center;
-  margin-bottom: 30px;
+  margin: 1rem 0;
 }
 
-#driver-container {
+#driver-container, #race-container {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
+  padding-top: 20px;
 }
 
-.driver-card {
-  background-color: white;
-  border: 1px solid #ddd;
+.driver-card, .race-card {
+  background-color: var(--f1-gray);
+  color: var(--f1-black);
   border-radius: 10px;
   padding: 15px;
   width: 220px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
   transition: transform 0.2s ease;
+  text-align: center;
 }
 
-.driver-card:hover {
+.driver-card:hover, .race-card:hover {
   transform: scale(1.05);
 }
 
-.driver-card h3 {
-  margin: 0 0 10px;
-}
-
-.driver-card p {
-  margin: 5px 0;
-}
-
-.driver-card img {
+.driver-card img, .race-card img {
   width: 100%;
   height: auto;
   object-fit: cover;
   border-radius: 8px;
 }
-.race-card img {
-  object-fit: cover;
-  height: 150px;
+
+.driver-name {
+  color: var(--f1-black);
+  font-size: 0.8rem;
+  margin: 0.5rem 0;
+  font-weight: bold;
 }
 
-#race-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
+.driver-info {
+  font-family: 'Formula1', sans-serif;
+  font-weight: bold;
+  font-size: 0.7rem;
+  text-align: left;
+  margin-top: 0.5rem;
+  line-height: 1.4;
+  padding-left: 0.8rem;
+}
+
+.race-card img {
+  height: 150px;
 }
 
 #trackmap {
@@ -110,11 +170,9 @@ h1 {
   background-size: contain;
   background-repeat: no-repeat;
   margin: auto;
-  border-radius: 12px;
   overflow: hidden;
 }
 
-/* Estilo para los autos */
 .car {
   position: absolute;
   width: 32px;
@@ -127,12 +185,10 @@ h1 {
   justify-content: center;
   font-size: 12px;
   border: 2px solid white;
+  font-family: 'Formula1', sans-serif;
+  transition: top 0.15s linear, left 0.15s linear;
 }
 
 .VER { background-color: royalblue; }
 .LEC { background-color: crimson; }
 .TSU { background-color: cornflowerblue; }
-
-.car {
-  transition: top 1s linear, left 1s linear;
-}
