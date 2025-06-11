@@ -195,53 +195,37 @@ document.getElementById("btn-circuito").addEventListener("click", () => {
   setTimeout(simularMovimiento, 300);
 });
 
-//ruta base para VER (Verstappen)
-const rutas = {
-  VER: [
-    [720, 110], [690, 125], [660, 145], [620, 160], [590, 180], [570, 200],
-    [550, 220], [520, 240], [500, 260], [480, 280], [460, 300],
-    [440, 320], [420, 340], [400, 360], [370, 370], [330, 380],
-    [300, 375], [270, 360], [240, 340], [220, 310], [210, 280],
-    [200, 250], [190, 220], [180, 190], [175, 170], [180, 140],
-    [190, 120], [210, 100], [240, 90], [280, 85], [320, 80],
-    [360, 82], [400, 90], [440, 100], [480, 110], [520, 120],
-    [560, 125], [600, 130], [640, 135], [680, 125], [720, 110] 
-  ]
-};
 
-//función para crear pequeñas variaciones entre rutas de distintos autos
-function desplazarRuta(ruta, dx, dy) {
-  return ruta.map(([x, y]) => [x + dx, y + dy]);
-}
+// Coordenadas del circuito de Monza (800x480px)
+const monzaPath = [
+  { x: 312, y: 339 }, { x: 176, y: 324 }, { x: 147, y: 281 }, 
+  { x: 126, y: 155 }, { x: 107, y: 143 }, { x: 96, y: 195 },
+  { x: 79, y: 50 }, { x: 166, y: 32 }, { x: 215, y: 103 },
+  { x: 359, y: 247 }, { x: 390, y: 249 }, { x: 418, y: 265 },
+  { x: 691, y: 271 }, { x: 687, y: 316 }, { x: 518, y: 340 }, 
+  { x: 316, y: 338 },
+];
 
-//duplicar rutas para otros autos
-rutas.LEC = desplazarRuta(rutas.VER, -5, 5);
-rutas.TSU = desplazarRuta(rutas.VER, 5, -5);
+// Simula el movimiento de un auto .car en el trazado
+function simularMovimiento(carElement, path, delay = 100) {
+  let i = 0;
 
-//función para animar los autos
-function simularMovimiento() {
-  //obtener referencias a los autos en el HTML
-  const autos = {
-    VER: document.querySelector(".car.VER"),
-    LEC: document.querySelector(".car.LEC"),
-    TSU: document.querySelector(".car.TSU"),
-  };
-
-  let frame = 0;
-//función recursiva que mueve los autos paso a paso
   function mover() {
-    for (const piloto in rutas) {
-      const puntos = rutas[piloto];
-      const pos = puntos[frame % puntos.length]; // bucle
-      const auto = autos[piloto];
-      if (auto && pos) {
-        auto.style.left = pos[0] + "px";
-        auto.style.top = pos[1] + "px";
-      }
+    if (!carElement || i >= path.length) {
+      i = 0; // vuelve a empezar
     }
-    frame++;
-    requestAnimationFrame(mover); // vuelve a ejecutar la animación
+
+    const punto = path[i];
+    carElement.style.left = `${punto.x}px`;
+    carElement.style.top = `${punto.y}px`;
+
+    i++;
+    setTimeout(mover, delay); // aca despues se puede ajustar la velocidad !! con el delay
   }
 
-  mover();  // iniciar animación
+  mover();
 }
+
+// Iniciar simulación
+const car = document.querySelector('.car.VER'); 
+simularMovimiento(car, monzaPath, 100); // 100ms entre puntos (velocidad)
