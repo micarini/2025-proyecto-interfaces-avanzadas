@@ -192,3 +192,21 @@ h1, h2, h3, h4, h5, h6 {
 .VER { background-color: royalblue; }
 .LEC { background-color: crimson; }
 .TSU { background-color: cornflowerblue; }
+
+.driver-card {
+  opacity: 0; /*invisibles al principio*/
+  transform: translateY(20px); /*deszplazo para abajo*/
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out; 
+}
+
+.driver-card.visible {
+  opacity: 1; 
+  transform: translateY(0); /*vuelve para arriba*/
+}
+.driver-card h3 {
+  font-size: 1em;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  white-space: normal; /* permite el salto de línea */
+  overflow: visible;   /* deja que el contenido fluya dentro de la caja */
+}

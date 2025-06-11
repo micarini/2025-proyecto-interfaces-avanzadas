@@ -35,11 +35,21 @@ fetch("https://api.openf1.org/v1/drivers") //GET al endpoint de la API
     const uniqueDrivers = Array.from(driversMap.values());
 
     //crear tarjetas para cada piloto y agregarlas al DOM
-    uniqueDrivers.forEach((driver) => { //uniqueDrivers es un array limpio y final de pilotos que cumplen los criterios
+   /* uniqueDrivers.forEach((driver) => { //uniqueDrivers es un array limpio y final de pilotos que cumplen los criterios
       //recorre cada piloto del array. en cada vuelta del bucle: driver es un objeto con informacion del piloto (nombre, numero, equipo, imagen, etc.).
       const card = createDriverCard(driver);
       driverContainer.appendChild(card);
-    });
+    });*/
+    uniqueDrivers.forEach((driver, index) => {
+  const card = createDriverCard(driver);
+  driverContainer.appendChild(card);
+
+  // Aplica animación con un pequeño delay incremental
+  setTimeout(() => {
+    card.classList.add("visible");
+  }, index * 100); // 100ms entre cada tarjeta. Podés ajustar esto.
+});
+
   })
   .catch((error) => { //manejo de errores en Promesas (try/catch para codigo asincronico con fetch)
     driverContainer.innerHTML = "<p>Error al cargar los pilotos.</p>";
@@ -86,6 +96,9 @@ function createDriverCard(driver) {
   card.appendChild(name);
   card.appendChild(infoList);
 
+card.addEventListener("click", () => {
+ window.location.href = `detalles.html?number=${driver.driver_number}`;
+});
   return card;
 }
 
@@ -154,30 +167,34 @@ function mostrarCarreras() {
       }
 
     //por cada carrera crear una tarjeta
-      data.forEach((meeting) => {
-        const card = document.createElement("div");
-        card.className = "driver-card";
+      data.forEach((meeting, index) => {
+  const card = document.createElement("div");
+  card.className = "driver-card";
+  raceContainer.appendChild(card);
 
-    //imagen según país, o placeholder si no hay 
-        const imageUrl =
-          countryImages[meeting.country_name] ||
-          "https://via.placeholder.com/300x180?text=" +
-            encodeURIComponent(meeting.country_name || "Carrera");
+  const imageUrl =
+    countryImages[meeting.country_name] ||
+    "https://via.placeholder.com/300x180.png?text=" +
+      encodeURIComponent(meeting.country_name || "Carrera");
 
-        card.innerHTML = `
-        <img src="${imageUrl}" alt="${meeting.country_name}" />
-          <h3>${meeting.meeting_name}</h3>
-          <p>País: ${meeting.country_name || "?"}</p>
-          <p>Fecha: ${meeting.date_start?.split("T")[0] || "?"}</p>
-        `;
+  card.innerHTML = `
+    <img src="${imageUrl}" alt="${meeting.country_name}" />
+    <h3>${meeting.meeting_name}</h3>
+    <p>País: ${meeting.country_name || "?"}</p>
+    <p>Fecha: ${meeting.date_start?.split("T")[0] || "?"}</p>
+  `;
 
-        raceContainer.appendChild(card);
+
+  raceContainer.appendChild(card);
+
+  // Retraso animación
+  setTimeout(() => {
+    card.classList.add("visible");
+  }, index * 100);
+});
+
       });
-    })
-    .catch((err) => {
-      console.error(err);
-      raceContainer.innerHTML = "<p>Error al cargar las carreras.</p>";
-    });
+    
 }
 
 /*RUTAS DE LOS AUTOS QUE RECORREN EL CIRCUITO*/
