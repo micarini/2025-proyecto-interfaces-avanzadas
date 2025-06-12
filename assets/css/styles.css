@@ -210,3 +210,46 @@ h1, h2, h3, h4, h5, h6 {
   white-space: normal; /* permite el salto de línea */
   overflow: visible;   /* deja que el contenido fluya dentro de la caja */
 }
+
+#driver-details {
+  max-width: 800px;
+  margin: 2rem auto;
+  background-color: var(--f1-gray);
+  color: var(--f1-black);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+  font-size: 0.95rem;
+}
+
+#driver-details p {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+#driver-details ul {
+  padding-left: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+#driver-details li {
+  background-color: var(--f1-white);
+  color: var(--f1-black);
+  padding: 0.8rem 1rem;
+  border-left: 4px solid var(--f1-red);
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+#driver-details li strong {
+  display: block;
+  color: var(--f1-red);
+  font-size: 0.8rem;
+  margin-bottom: 0.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}

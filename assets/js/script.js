@@ -213,11 +213,11 @@ document.getElementById("btn-circuito").addEventListener("click", () => {
 });
 
 
-// Coordenadas del circuito de Monza (800x480px)
+// Coordenadas del circuito de Monza (771x434px)
 const monzaPath = [
   { x: 312, y: 339 }, { x: 176, y: 324 }, { x: 147, y: 281 }, 
-  { x: 126, y: 155 }, { x: 107, y: 143 }, { x: 96, y: 195 },
-  { x: 79, y: 50 }, { x: 166, y: 32 }, { x: 215, y: 103 },
+  { x: 126, y: 155 }, { x: 102, y: 150 }, { x: 79, y: 50 }, 
+  { x: 120, y: 36 }, { x: 166, y: 32 }, { x: 215, y: 103 },
   { x: 359, y: 247 }, { x: 390, y: 249 }, { x: 418, y: 265 },
   { x: 691, y: 271 }, { x: 687, y: 316 }, { x: 518, y: 340 }, 
   { x: 316, y: 338 },
@@ -243,6 +243,20 @@ function simularMovimiento(carElement, path, delay = 100) {
   mover();
 }
 
-// Iniciar simulación
-const car = document.querySelector('.car.VER'); 
-simularMovimiento(car, monzaPath, 100); // 100ms entre puntos (velocidad)
+// selecciono cada auto
+const carVER = document.querySelector('.car.VER');
+const carLEC = document.querySelector('.car.LEC');
+const carTSU = document.querySelector('.car.TSU'); 
+
+// las simulaciones las hago con velocidades distintas y delays de inicio
+setTimeout(() => {
+  simularMovimiento(carVER, monzaPath, 200); // más rapido
+}, 0);
+
+setTimeout(() => {
+  simularMovimiento(carLEC, monzaPath, 250); // velocidad intermedia
+}, 500); // arranca 0.5s después
+
+setTimeout(() => {
+  simularMovimiento(carTSU, monzaPath, 300); // mas lento
+}, 1000); // arranca 1s después
